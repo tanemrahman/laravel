@@ -73,3 +73,11 @@ Route::get('myarticle',function(){
 });
 
 Route::resource('products',ProductController::class);
+
+
+
+Route::get('admin','AdminController@index');
+Route::post('admin/auth','AdminController@auth')->name('admin.auth');
+Route::group(['middleware'=>'admin_auth'], function(){
+    Route::get('admin/dashboard','AdminController@dashboard');
+});
